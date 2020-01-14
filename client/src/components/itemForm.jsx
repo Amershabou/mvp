@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 
 
 class ItemForm extends React.Component {
@@ -48,28 +48,26 @@ class ItemForm extends React.Component {
   render() {
 
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Row>
-          <Form.Group controlId="formGridItem">
+      <div>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Row>
+            <Col>
+              <Form.Control type="text" placeholder="Item Name" name="itemName" onChange={this.handleInputChange}/>
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Price" name="price" onChange={this.handleInputChange} />
+            </Col>
+          </Form.Row>
+          <Form.Group controlId="formGridLink">
             <Form.Label></Form.Label>
-            <Form.Control type="text" placeholder="Item Name" name="itemName" onChange={this.handleInputChange} />
+            <Form.Control placeholder="Product Link" name="link" onChange={this.handleInputChange} />
           </Form.Group>
 
-          <Form.Group controlId="formGridPrice">
-            <Form.Label></Form.Label>
-            <Form.Control type="text" placeholder="Price" name="price" onChange={this.handleInputChange} />
-          </Form.Group>
-        </Form.Row>
-
-        <Form.Group controlId="formGridLink">
-          <Form.Label></Form.Label>
-          <Form.Control placeholder="Product Link" name="link" onChange={this.handleInputChange} />
-        </Form.Group>
-
-        <Button variant="primary" type="submit" >
-          Submit
+          <Button variant="primary" type="submit" size="lg" block>
+            Submit
   </Button>
-      </Form>
+        </Form>
+      </div>
     )
   }
 }

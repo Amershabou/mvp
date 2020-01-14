@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col } from 'react-bootstrap';
 
 
 class ItemForm extends React.Component {
@@ -36,7 +36,7 @@ class ItemForm extends React.Component {
         console.log('Data has been sucessfully posted');
       }
     })
-    .catch((err)=> console.log(err))
+      .catch((err) => console.log(err))
 
   }
 
@@ -44,7 +44,7 @@ class ItemForm extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Form.Row>
+        {/* <Form.Row>
           <Form.Group controlId="formGridItem">
             <Form.Label></Form.Label>
             <Form.Control type="text" placeholder="Item Name" value={this.state.itemName} name="itemName" onChange={this.handleInputChange} />
@@ -54,22 +54,29 @@ class ItemForm extends React.Component {
             <Form.Label></Form.Label>
             <Form.Control type="text" placeholder="Price" value={this.state.price} name="price" onChange={this.handleInputChange} />
           </Form.Group>
-        </Form.Row>
+        </Form.Row> */}
 
+        <Form.Row>
+            <Col>
+              <Form.Control type="text" placeholder="Item Name" value={this.state.itemName} name="itemName" onChange={this.handleInputChange}/>
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Price" value={this.state.price} name="price" onChange={this.handleInputChange} />
+            </Col>
+          </Form.Row>
 
         <Form.Group controlId="formGridLink">
           <Form.Label></Form.Label>
           <Form.Control placeholder="Product Link" value={this.state.link} name="link" onChange={this.handleInputChange} />
         </Form.Group>
-        <Form.Row>
 
-          <Button variant="info" type="submit" >
+
+          <Button className ='button' variant="info" type="submit" >
             Submit Changes
   </Button>
-          <Button variant="secondary" onClick={() => this.props.chageToMainView()}  >
+          <Button className ='button' variant="secondary" onClick={() => this.props.chageToMainView()}  >
             Cancel Changes
   </Button>
-        </Form.Row>
 
       </Form>
     )

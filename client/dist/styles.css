@@ -1,34 +1,36 @@
-/* span.form-check {
-  margin-top: .6em;
-  font-size: 20px;
-  padding-bottom: .6em
-    }
 
-  .d-flex button{
-    margin: .6em ;
+  .container-fluid  {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
   }
-  .container table{
-    margin: 3em 13em;
-  } */
+
+/* .item {
+    flex: 2;
+    width: 800px;
+    height: 50px;
+    margin: auto;
+} */
+
+.item {
+  padding: 2em;
+  flex: 2;
+  width: 800px;
+  height: 50px;
+  margin: auto;
+}
 
   .btnedit{
     color: green;
     cursor: pointer
   }
+
   .btndelete{
     color: brown;
     cursor: pointer
   }
 
-  /* table .pricetotal{
-    font-style: bold;
+  .button {
+    margin: 6px;
   }
 
-  table .fa-check-circle {
-    color:green
-  }
-
-  .emptyListMsg{
-    margin: 0em 13em;
-  }
- */

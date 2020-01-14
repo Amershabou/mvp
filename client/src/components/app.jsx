@@ -73,10 +73,12 @@ class App extends React.Component {
     return (
       <div className="container-fluid text-center">
         <h1 className="p-3 mb-2 bg-white text-info"><span className="text-muted"> Save For</span><i className="fas fa-dolly"></i>ater</h1>
-        <div className="container-fluid text-center">
+        <div className="item">
           {this.state.edit ? <EditItem item={this.state.items.filter(item => item._id === this.state.editId)} chageToMainView={this.chageToMainView} getNewItem={this.getAllItems} /> : <ItemForm className="container-fluid text-center" getNewItem={this.getAllItems} />}
         </div>
-        {this.state.items.length ? <div> <h4>There are currently <strong>{this.state.items.length}</strong> {this.state.items.length === 1 ? "item" : "items"} in your cart!</h4><ItemsTable deleteAll={this.deleteAll} deleteOne={this.deleteOne} changeToEdit={this.changeToEdit} items={this.state.items} /></div> : <div><h4>Your cart is currently empty. Add new items to buy later</h4></div>}
+        <div className='item'>
+          {this.state.items.length ? <div> <h4>There are currently <strong>{this.state.items.length}</strong> {this.state.items.length === 1 ? "item" : "items"} in your cart!</h4><ItemsTable deleteAll={this.deleteAll} deleteOne={this.deleteOne} changeToEdit={this.changeToEdit} items={this.state.items} /></div> : <div><h4>Your cart is currently empty. Add new items to buy later</h4></div>}
+        </div>
 
       </div>
     )
