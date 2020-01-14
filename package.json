@@ -1,0 +1,48 @@
+{
+  "name": "save-for-later_mvp",
+  "version": "1.0.0",
+  "description": "An App to save product someone is interested to buy on a later date",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch",
+    "db-start": "node db/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amershabou/hrr42-mvp.git"
+  },
+  "author": "Amer Shabou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amershabou/hrr42-mvp/issues"
+  },
+  "homepage": "https://github.com/Amershabou/hrr42-mvp#readme",
+  "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "axios": "^0.19.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.0-beta.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.8.7",
+    "mysql": "^2.17.1",
+    "nodemon": "^2.0.2",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "sequelize": "^5.21.3",
+    "webpack": "^4.41.5"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.10"
+  }
+}
