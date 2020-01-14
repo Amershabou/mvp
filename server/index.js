@@ -21,6 +21,32 @@ app.get('/items', (req, res) => {
     });
 });
 
+app.post('/user', (req, res) => {
+  const userName = req.body.userName;
+  const password = req.body.password;
+  const signin = true;
+  db.addUser({ userName, password, signin })
+    .then(() => res.status(201).send('A new record has been created!'))
+    .catch(err => {
+      console.log(err);
+      res.status(404).end();
+    });
+});
+
+app.get('/user/:userName/:password', (req, res) => {
+  console.log(req.params.userName);
+  console.log(req.params.password)
+  db.checkUser(req.params.userName, req.params.password)
+    .then(data => {
+      console.log(data[0].signin)
+      res.send(data[0].signin);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(404).end();
+    });
+});
+
 app.post('/item', (req, res) => {
   const itemName = req.body.itemName;
   const price = req.body.price;

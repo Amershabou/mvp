@@ -25,7 +25,7 @@ class App extends React.Component {
   }
 
   getAllItems() {
-    axios.get('http://localhost:3000/items')
+    axios.get('/items')
       .then(res => {
         this.setState({
           items: res.data,
@@ -39,7 +39,7 @@ class App extends React.Component {
 
 
   deleteAll() {
-    axios.delete('http://localhost:3000/delete')
+    axios.delete('/delete')
       .then(() => console.log(res.data))
       .catch((err) => console.log(err))
     this.setState({ items: [] })
@@ -47,7 +47,7 @@ class App extends React.Component {
   }
 
   deleteOne(id) {
-    axios.delete(`http://localhost:3000/delete/${id}`)
+    axios.delete(`/delete/${id}`)
       .then(() => this.getAllItems())
       .catch((err) => console.log(err))
     this.setState({
@@ -73,6 +73,8 @@ class App extends React.Component {
     return (
       <div className="container-fluid text-center">
         <h1 className="p-3 mb-2 bg-white text-info"><span className="text-muted"> Save For</span><i className="fas fa-dolly"></i>ater</h1>
+        <h4>Welcome Back, Amer!</h4>
+
         <div className="item">
           {this.state.edit ? <EditItem item={this.state.items.filter(item => item._id === this.state.editId)} chageToMainView={this.chageToMainView} getNewItem={this.getAllItems} /> : <ItemForm className="container-fluid text-center" getNewItem={this.getAllItems} />}
         </div>

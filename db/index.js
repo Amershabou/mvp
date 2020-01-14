@@ -17,8 +17,34 @@ const itemsSchema = new mongoose.Schema({
   link: String
 });
 
+const userSchema = new mongoose.Schema({
+  userName: { type: String, default: 'N/A' },
+  password: String,
+  signin: Boolean
+});
+
+const User = mongoose.model('user', userSchema);
+
 const Item = mongoose.model('Item', itemsSchema);
 
+
+const checkUser = (user, passwd) => {
+  return new Promise((resolve, reject) => {
+    User.find({ userName: user, password: passwd })
+      .exec((err, docs) => {
+        resolve(docs);
+      });
+  });
+};
+
+const addUser = (userRecord) => {
+  return new Promise((resolve, reject) => {
+    let user = new User(userRecord);
+    console.log(user)
+    user.save()
+      .exec();
+  })
+}
 
 const getAllItems = () => {
   return new Promise((resolve, reject) => {
@@ -62,4 +88,4 @@ const deleteOne = (id) => {
 };
 
 module.exports = Item;
-module.exports = { db, getAllItems, addItem, updateItem, deleteAll, deleteOne };
+module.exports = { db, getAllItems, addItem, updateItem, deleteAll, deleteOne, checkUser, addUser };
