@@ -18,8 +18,6 @@ class App extends React.Component {
     this.deleteOne = this.deleteOne.bind(this);
     this.chageToMainView = this.chageToMainView.bind(this);
     this.changeToEdit = this.changeToEdit.bind(this);
-    this.updateInItems = this.updateInItems.bind(this);
-
   }
 
   componentDidMount() {
@@ -43,8 +41,8 @@ class App extends React.Component {
   deleteAll() {
     axios.delete('http://localhost:3000/delete')
       .then(() => console.log(res.data))
-    this.setState({ items: [] })
       .catch((err) => console.log(err))
+    this.setState({ items: [] })
 
   }
 
@@ -52,18 +50,8 @@ class App extends React.Component {
     axios.delete(`http://localhost:3000/delete/${id}`)
       .then(() => this.getAllItems())
       .catch((err) => console.log(err))
-  }
-
-  updateInItems(item) {
-    const id = item[0]._id;
-    let newState = this.state;
-    newState.forEach((el, i) => {
-      if (el._id === id) {
-        newState[i] = item;
-      }
-    })
     this.setState({
-      items: newState,
+      items: this.state.items.filter(item => item._id !== id),
       edit: false
     })
   }
@@ -86,7 +74,7 @@ class App extends React.Component {
       <div className="container-fluid text-center">
         <h1 className="p-3 mb-2 bg-white text-info"><span className="text-muted"> Save For</span><i className="fas fa-dolly"></i>ater</h1>
         <div className="container-fluid text-center">
-          {this.state.edit ? <EditItem item={this.state.items.filter(item => item._id === this.state.editId)} chageToMainView={this.chageToMainView} updateInItems={this.updateInItems} getNewItem={this.getAllItems} /> : <ItemForm className="container-fluid text-center" getNewItem={this.getAllItems} />}
+          {this.state.edit ? <EditItem item={this.state.items.filter(item => item._id === this.state.editId)} chageToMainView={this.chageToMainView} getNewItem={this.getAllItems} /> : <ItemForm className="container-fluid text-center" getNewItem={this.getAllItems} />}
         </div>
         {this.state.items.length ? <div> <h4>There are currently <strong>{this.state.items.length}</strong> {this.state.items.length === 1 ? "item" : "items"} in your cart!</h4><ItemsTable deleteAll={this.deleteAll} deleteOne={this.deleteOne} changeToEdit={this.changeToEdit} items={this.state.items} /></div> : <div><h4>Your cart is currently empty. Add new items to buy later</h4></div>}
 

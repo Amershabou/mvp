@@ -36,10 +36,6 @@ class ItemForm extends React.Component {
         console.log('Data has been sucessfully posted');
       }
     })
-    .then(() => {
-      this.props.chageToMainView()
-      props.updateInItems(this.state._id)
-    })
     .catch((err)=> console.log(err))
 
   }

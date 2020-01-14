@@ -31,10 +31,10 @@ const getAllItems = () => {
 
 const addItem = (record) => {
   return new Promise((resolve, reject) => {
-  let item = new Item(record);
-  console.log(item)
-  item.save((err) => console.log(err))
-    .exec();
+    let item = new Item(record);
+    console.log(item)
+    item.save()
+      .exec();
   })
 };
 
