@@ -52,7 +52,10 @@ class ItemForm extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Row>
             <Col>
-              <Form.Control type="text" placeholder="Item Name" name="itemName" onChange={this.handleInputChange}/>
+              <Form.Control type="text" placeholder="Item Name" name="itemName" onChange={this.handleInputChange} />
+            </Col>
+            <Col>
+              <Form.Control type="text" placeholder="Merchant Name" name="merchant" onChange={this.handleInputChange} />
             </Col>
             <Col>
               <Form.Control type="text" placeholder="Price" name="price" onChange={this.handleInputChange} />

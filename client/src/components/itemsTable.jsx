@@ -18,6 +18,7 @@ const ItemsTable = (props) => {
           <tr>
             <th>#</th>
             <th>Item Name</th>
+            <th>Merchant Name</th>
             <th>Price</th>
             <th>Date Added</th>
             <th>Action</th>
@@ -27,6 +28,7 @@ const ItemsTable = (props) => {
           {props.items.map((item, i) => <tr key={i}>
             <td>{i + 1}</td>
             <td><a href={item.link} target="_blank">{item.itemName}</a></td>
+            <td>{item.merchant}</td>
             <td>{formatter.format(item.price).split('').slice(0, formatter.format(item.price).split('').length - 3).join('')}</td>
             <td>{item.created.split('').slice(0, 10).join('')}</td>
             <th><i onClick={() => props.changeToEdit(item._id)} className='fas fa-edit btnedit'></i>    <i onClick={() => props.deleteOne(item._id)} className='fas fa-trash-alt btndelete'></i></th>

@@ -13,6 +13,7 @@ db.once('open', function () {
 const itemsSchema = new mongoose.Schema({
   itemName: { type: String, default: 'N/A' },
   price: Number,
+  merchant: String,
   created: { type: Date, default: new Date },
   link: String
 });

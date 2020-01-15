@@ -57,13 +57,16 @@ class ItemForm extends React.Component {
         </Form.Row> */}
 
         <Form.Row>
-            <Col>
-              <Form.Control type="text" placeholder="Item Name" value={this.state.itemName} name="itemName" onChange={this.handleInputChange}/>
-            </Col>
-            <Col>
-              <Form.Control type="text" placeholder="Price" value={this.state.price} name="price" onChange={this.handleInputChange} />
-            </Col>
-          </Form.Row>
+          <Col>
+            <Form.Control type="text" placeholder="Item Name" value={this.state.itemName} name="itemName" onChange={this.handleInputChange} />
+          </Col>
+          <Col>
+            <Form.Control type="text" placeholder="Merchant Name" value={this.state.price} name="merchant" onChange={this.handleInputChange} />
+          </Col>
+          <Col>
+            <Form.Control type="text" placeholder="Price" value={this.state.price} name="price" onChange={this.handleInputChange} />
+          </Col>
+        </Form.Row>
 
         <Form.Group controlId="formGridLink">
           <Form.Label></Form.Label>
@@ -71,11 +74,11 @@ class ItemForm extends React.Component {
         </Form.Group>
 
 
-          <Button className ='button' variant="info" type="submit" >
-            Submit Changes
+        <Button className='button' variant="info" type="submit" >
+          Submit Changes
   </Button>
-          <Button className ='button' variant="secondary" onClick={() => this.props.chageToMainView()}  >
-            Cancel Changes
+        <Button className='button' variant="secondary" onClick={() => this.props.chageToMainView()}  >
+          Cancel Changes
   </Button>
 
       </Form>

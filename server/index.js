@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/items', (req, res) => {
   db.getAllItems()
     .then(data => {
-      console.log("data here====>" + data);
       res.send(data);
     })
     .catch(err => {
@@ -26,7 +25,7 @@ app.post('/user', (req, res) => {
   const password = req.body.password;
   const signin = true;
   db.addUser({ userName, password, signin })
-    .then(() => res.status(201).send('A new record has been created!'))
+    .then(() => res.status(201).send('A new user has been created!'))
     .catch(err => {
       console.log(err);
       res.status(404).end();
@@ -34,11 +33,9 @@ app.post('/user', (req, res) => {
 });
 
 app.get('/user/:userName/:password', (req, res) => {
-  console.log(req.params.userName);
-  console.log(req.params.password)
+
   db.checkUser(req.params.userName, req.params.password)
     .then(data => {
-      console.log(data[0].signin)
       res.send(data[0].signin);
     })
     .catch(err => {
@@ -50,8 +47,9 @@ app.get('/user/:userName/:password', (req, res) => {
 app.post('/item', (req, res) => {
   const itemName = req.body.itemName;
   const price = req.body.price;
+  const merchant = req.body.merchant;
   const link = req.body.link;
-  db.addItem({ itemName, price, link })
+  db.addItem({ itemName, merchant, price, link })
     .then(() => res.status(201).send('A new record has been created!'))
     .catch(err => {
       console.log(err);
@@ -79,9 +77,10 @@ app.delete('/delete/:id', (req, res) => {
 
 app.put('/update', (req, res) => {
   const itemName = req.body.itemName;
+  const merchant = req.body.merchant;
   const price = req.body.price;
   const link = req.body.link;
-  db.updateItem(req.body._id, { itemName, price, link })
+  db.updateItem(req.body._id, { itemName, merchant, price, link })
     .then(() => {
       res.status(200)
       console.log("This record has been updated!")
