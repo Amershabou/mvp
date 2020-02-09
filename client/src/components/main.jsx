@@ -1,10 +1,7 @@
 import React from 'react';
 import App from './app.jsx';
 import axios from 'axios';
-
-
 import { Form, Button, Col } from 'react-bootstrap';
-
 
 class Main extends React.Component {
   constructor(props) {

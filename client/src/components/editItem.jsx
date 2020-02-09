@@ -33,7 +33,7 @@ class ItemForm extends React.Component {
     this.props.editAlert(this.state)
     $.ajax({
       method: 'PUT',
-      url: "http://localhost:3000/update",
+      url: "/update",
       data: this.state,
       success: () => {
         console.log('Data has been sucessfully posted');
