@@ -10,6 +10,8 @@ class ItemForm extends React.Component {
       _id: props.item[0]._id,
       itemName: props.item[0].itemName,
       price: props.item[0].price,
+      merchant: props.item[0].merchant,
+      created: props.item[0].created,
       link: props.item[0].link
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,7 +29,8 @@ class ItemForm extends React.Component {
   }
 
   handleSubmit() {
-    // event.preventDefault();
+    event.preventDefault();
+    this.props.editAlert(this.state)
     $.ajax({
       method: 'PUT',
       url: "http://localhost:3000/update",
@@ -36,32 +39,22 @@ class ItemForm extends React.Component {
         console.log('Data has been sucessfully posted');
       }
     })
+    .then(() => {
+      props.getNewItem()
+    })
       .catch((err) => console.log(err))
 
   }
 
   render() {
-
     return (
       <Form onSubmit={this.handleSubmit}>
-        {/* <Form.Row>
-          <Form.Group controlId="formGridItem">
-            <Form.Label></Form.Label>
-            <Form.Control type="text" placeholder="Item Name" value={this.state.itemName} name="itemName" onChange={this.handleInputChange} />
-          </Form.Group>
-
-          <Form.Group controlId="formGridPrice">
-            <Form.Label></Form.Label>
-            <Form.Control type="text" placeholder="Price" value={this.state.price} name="price" onChange={this.handleInputChange} />
-          </Form.Group>
-        </Form.Row> */}
-
         <Form.Row>
           <Col>
             <Form.Control type="text" placeholder="Item Name" value={this.state.itemName} name="itemName" onChange={this.handleInputChange} />
           </Col>
           <Col>
-            <Form.Control type="text" placeholder="Merchant Name" value={this.state.price} name="merchant" onChange={this.handleInputChange} />
+            <Form.Control type="text" placeholder="Merchant Name" value={this.state.merchant} name="merchant" onChange={this.handleInputChange} />
           </Col>
           <Col>
             <Form.Control type="text" placeholder="Price" value={this.state.price} name="price" onChange={this.handleInputChange} />
@@ -72,15 +65,12 @@ class ItemForm extends React.Component {
           <Form.Label></Form.Label>
           <Form.Control placeholder="Product Link" value={this.state.link} name="link" onChange={this.handleInputChange} />
         </Form.Group>
-
-
-        <Button className='button' variant="info" type="submit" >
+        <Button className='button' variant="info" type="submit"  onClick={() => this.props.editAlert()}>
           Submit Changes
-  </Button>
-        <Button className='button' variant="secondary" onClick={() => this.props.chageToMainView()}  >
+        </Button>
+        <Button className='button' variant="secondary" onClick={() => this.props.chageToMainView()}>
           Cancel Changes
-  </Button>
-
+        </Button>
       </Form>
     )
   }

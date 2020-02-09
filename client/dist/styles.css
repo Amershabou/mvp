@@ -10,13 +10,14 @@
     width: 350px;
     height: 50px;
     margin: auto;
-    padding: 2em;
+    padding: 0.5em;
 }
+
 
 .item {
   padding: 2em;
   flex: 2;
-  width: 800px;
+  width: 1000px;
   height: 50px;
   margin: auto;
 }
@@ -35,3 +36,6 @@
     margin: 6px;
   }
 
+#background {
+  color: black;
+}

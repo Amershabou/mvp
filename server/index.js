@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../db/index.js')
+const db = require('../db/index.js');
 const port = 3000;
 const app = express();
 
@@ -61,8 +61,8 @@ app.delete('/delete', (req, res) => {
 
   db.deleteAll()
     .then(() => {
-      res.status(200)
-      console.log("All records have been deleted!")
+      res.status(200);
+      console.log('All records have been deleted!');
     });
 });
 
@@ -70,8 +70,8 @@ app.delete('/delete/:id', (req, res) => {
   let id = req.params.id;
   db.deleteOne(id)
     .then(() => {
-      res.status(200)
-      console.log("The record have been deleted!")
+      res.status(200);
+      console.log('The record have been deleted!');
     });
 });
 
@@ -82,10 +82,10 @@ app.put('/update', (req, res) => {
   const link = req.body.link;
   db.updateItem(req.body._id, { itemName, merchant, price, link })
     .then(() => {
-      res.status(200)
-      console.log("This record has been updated!")
+      res.status(200);
+      console.log('This record has been updated!');
     });
-})
+});
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
