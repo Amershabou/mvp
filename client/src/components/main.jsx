@@ -12,7 +12,7 @@ class Main extends React.Component {
     this.state = {
       userName: "",
       password: "",
-      signin: false
+      signin: true
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
