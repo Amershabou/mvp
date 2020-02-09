@@ -4,17 +4,17 @@
 ## Photos
 
 ### Login
-![](Save-For-Later-Login.gif)
+![](demo/Save-For-Later-Login.gif)
 
 ### Add
-![](Save-For-Later-Add.gif)
+![](demo/Save-For-Later-Add.gif)
 
 ### Edit
-![](Save-For-Later-Edit.gif)
+![](demo/Save-For-Later-Edit.gif)
 
 ### Delete one And Delete All
-![](Save-For-Later-Delete.gif)
-![](Save-For-Later-DeleteAll.gif)
+![](demo/Save-For-Later-Delete.gif)
+![](demo/Save-For-Later-DeleteAll.gif)
 
 
 
@@ -37,7 +37,17 @@
 
 ## Usage
 
-> Some usage instructions
+### Run Project Locally
+Assumes local installation of [Node.js](https://nodejs.org/en/download/)
+
+To run the project locally:
+
+- Clone or fork this repository.
+- Run `npm install`
+- Run `npm run react-dev` (If you made chenges to any of the files)
+- Run `npm run start`
+
+
 
 ## Requirements
 
