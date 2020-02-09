@@ -6,14 +6,18 @@
 ### Login
 ![](demo/Save-For-Later-Login.gif)
 
+
 ### Add
 ![](demo/Save-For-Later-Add.gif)
+
 
 ### Edit
 ![](demo/Save-For-Later-Edit.gif)
 
+
 ### Delete one And Delete All
 ![](demo/Save-For-Later-Delete.gif)
+
 ![](demo/Save-For-Later-DeleteAll.gif)
 
 
