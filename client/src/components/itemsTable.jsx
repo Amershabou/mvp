@@ -1,15 +1,13 @@
-import React from 'react';
-import { Table, Button } from 'react-bootstrap';
-import axios from 'axios';
-
+import React from "react";
+import { Table, Button } from "react-bootstrap";
+import axios from "axios";
 
 const ItemsTable = (props) => {
-
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  })
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
 
   return (
     <div>
@@ -25,21 +23,42 @@ const ItemsTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.items.map((item, i) => <tr key={i}>
-            <td>{i + 1}</td>
-            <td><a href={item.link} target="_blank">{item.itemName}</a></td>
-            <td>{item.merchant}</td>
-            <td>{formatter.format(item.price).split('').slice(0, formatter.format(item.price).split('').length - 3).join('')}</td>
-            <td>{item.created.split('').slice(0, 10).join('')}</td>
-            <th><i onClick={() => props.changeToEdit(item._id)} className='fas fa-edit btnedit'></i>    <i onClick={() => props.deleteOne(item._id)} className='fas fa-trash-alt btndelete'></i></th>
-          </tr>)}
+          {props.items.map((item, i) => (
+            <tr key={i}>
+              <td>{i + 1}</td>
+              <td>
+                <a href={item.link} target="_blank">
+                  {item.itemName}
+                </a>
+              </td>
+              <td>{item.merchant}</td>
+              <td>
+                {formatter
+                  .format(item.price)
+                  .split("")
+                  .slice(0, formatter.format(item.price).split("").length - 3)
+                  .join("")}
+              </td>
+              <td>{item.created.split("").slice(0, 10).join("")}</td>
+              <th>
+                <i
+                  onClick={() => props.changeToEdit(item._id)}
+                  className="fas fa-edit btnedit"
+                ></i>{" "}
+                <i
+                  onClick={() => props.deleteOne(item._id)}
+                  className="fas fa-trash-alt btndelete"
+                ></i>
+              </th>
+            </tr>
+          ))}
         </tbody>
       </Table>
-      <Button variant="outline-danger" onClick={() => props.deleteAll()}>Delete All</Button>
-
+      <Button variant="outline-danger" onClick={() => props.deleteAll()}>
+        Delete All
+      </Button>
     </div>
-  )
-}
-
+  );
+};
 
 export default ItemsTable;
