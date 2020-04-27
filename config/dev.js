@@ -1,6 +1,6 @@
 module.exports = {
   secrets: {
     jwt: "save4Later",
-    jwtExp: 60,
+    jwtExp: 600,
   },
 };

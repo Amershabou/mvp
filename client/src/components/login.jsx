@@ -3,7 +3,6 @@ import App from "./app.jsx";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Form, Button, Col } from "react-bootstrap";
-// import {connect} from 'react-redux';
 import setAuthToken from "../utils/setAuthToken";
 import jwt from "jsonwebtoken";
 
@@ -15,27 +14,12 @@ class Login extends React.Component {
       password: "",
       firstName: "",
       userName: "",
-      signin: false,
       errors: {},
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUserSignin = this.handleUserSignin.bind(this);
   }
-
-  handleUserSignin() {
-    this.setState({
-      signin: true,
-      userName: localStorage.getItem("user"),
-      firstName: localStorage.getItem("name"),
-    });
-  }
-
-  // useEffect(()=>{
-  //   localStorage.setItem("signin", 'LOGGED-IN')
-  //   localStorage.setItem("user", JSON.stringify(this.state.userName))
-  //   localStorage.setItem("name", JSON.stringify(this.state.firstName))
-  // })
 
   handleInputChange(event) {
     const target = event.target;
@@ -51,35 +35,19 @@ class Login extends React.Component {
     event.preventDefault();
     axios.post(`/signin`, this.state).then(
       (res) => {
-        console.log(res);
         const token = res.data.token;
         localStorage.setItem("jwtToken", token);
-        // setAuthToken(token);
         let decoded = jwt.decode(token);
         localStorage.setItem("id", decoded.id);
         localStorage.setItem("name", decoded.name);
 
-        console.log(jwt.decode(token));
         this.props.history.push(`/user/${decoded.id}`);
-        // this.handleUserSignin()
       },
       (err) => this.setState({ errors: { form: "Invalid Credentials!" } })
     );
   }
 
   render() {
-    // const {isAuthenticated} = this.props.auth
-    // const userLinks = {
-
-    // }
-    const { errors } = this.state;
-    if (this.state.signin) {
-      return (
-        <div>
-          <App changeSignin={this.handleUserSignin} />
-        </div>
-      );
-    }
     return (
       <div>
         <div className="container-fluid text-center">
@@ -131,14 +99,4 @@ class Login extends React.Component {
   }
 }
 
-// navigationBar.propTypes = {
-//   auth: React.propTypes.object.isRequired
-// }
-
-// const mapStateToProps = (state) =>{
-//   return {
-//     auth: state.auth
-//   }
-// }
-// export default connect(mapStateToProps) (Login);
 export default Login;

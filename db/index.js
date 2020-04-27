@@ -17,33 +17,28 @@ const itemsSchema = new mongoose.Schema({
   itemName: { type: String, default: "N/A" },
   price: Number,
   merchant: String,
-  id: String,
+  userId: String,
   created: { type: Date, default: new Date() },
   link: String,
 });
 
 const Item = mongoose.model("Item", itemsSchema);
 
-const getAllItems = (id) => {
-  return new Promise((resolve, reject) => {
-    Item.find({ id }).exec((err, docs) => {
-      resolve(docs);
+const getAllItems = async (req, res) => {
+  const { userId } = req.params;
+  await Item.find({ userId })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).end();
     });
-  });
 };
 
-// const addItem = (record) => {
-//   return new Promise((resolve, reject) => {
-//     let item = new Item(record);
-//     // console.log(item)
-//     item.save()
-//       .exec();
-//   });
-// };
 const addItem = async (req, res) => {
-  const { itemName, merchant, price, link, id } = req.body;
-  console.log(id);
-  let rec = { itemName, merchant, price, link, id };
+  const { itemName, merchant, price, link, userId } = req.body;
+  let rec = { itemName, merchant, price, link, userId };
   try {
     let item = new Item(rec);
     console.log(item);
@@ -54,22 +49,45 @@ const addItem = async (req, res) => {
   }
 };
 
-const updateItem = (id, record) => {
-  return new Promise((resolve, reject) => {
-    Item.findOneAndUpdate({ _id: id }, record).exec();
+const updateItem = async (req, res) => {
+  const { id } = req.params;
+  const { itemName, merchant, price, link } = req.body;
+  const record = { itemName, merchant, price, link };
+  await Item.findOneAndUpdate({ _id: id }, record)
+    .then(() => {
+      res.status(200).send("The record has been updated!");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).end();
+    });
+};
+
+const deleteAll = async (req, res) => {
+  const { userId } = req.params;
+
+  await Item.deleteMany({ userId }).then(() => {
+    res
+      .status(200)
+      .send("All records have been deleted!")
+      .catch((err) => {
+        console.log(err);
+        res.status(404).end();
+      });
   });
 };
 
-const deleteAll = (id) => {
-  return new Promise((resolve, reject) => {
-    Item.deleteMany({ id }).exec();
-  });
-};
-
-const deleteOne = (id) => {
-  return new Promise((resolve, reject) => {
-    Item.deleteOne({ _id: id }).exec();
-  });
+const deleteOne = async (req, res) => {
+  let { id } = req.params;
+  console.log(id);
+  await Item.deleteOne({ _id: id })
+    .then(() => {
+      res.status(200).send("The record has been deleted!");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(404).end();
+    });
 };
 
 module.exports = Item;

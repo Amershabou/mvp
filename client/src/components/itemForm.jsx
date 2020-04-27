@@ -9,7 +9,7 @@ class ItemForm extends React.Component {
       itemName: "",
       price: null,
       link: "",
-      id: localStorage.getItem("id"),
+      userId: localStorage.getItem("id"),
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,8 +26,13 @@ class ItemForm extends React.Component {
   }
 
   handleSubmit() {
+    let token = localStorage.getItem("jwtToken");
     axios
-      .post("/api/item", this.state)
+      .post("/api/item/add", this.state, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         props.getNewItem();
       })
