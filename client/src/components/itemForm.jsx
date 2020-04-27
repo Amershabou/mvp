@@ -1,7 +1,6 @@
-import React from 'react';
-import $ from 'jquery';
-import { Form, Button, Col } from 'react-bootstrap';
-
+import React from "react";
+import axios from "axios";
+import { Form, Button, Col } from "react-bootstrap";
 
 class ItemForm extends React.Component {
   constructor(props) {
@@ -9,8 +8,9 @@ class ItemForm extends React.Component {
     this.state = {
       itemName: "",
       price: null,
-      link: ""
-    }
+      link: "",
+      id: localStorage.getItem("id"),
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,25 +21,17 @@ class ItemForm extends React.Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
-
   handleSubmit() {
-    $.ajax({
-      method: 'POST',
-      url: "/item",
-      data: this.state,
-      success: () => {
-        console.log('Data has been sucessfully posted');
-      }
-    })
+    axios
+      .post("/api/item", this.state)
       .then(() => {
-        props.getNewItem()
+        props.getNewItem();
       })
-      .catch((err) => console.log(err))
-
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -48,26 +40,45 @@ class ItemForm extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Row>
             <Col>
-              <Form.Control type="text" placeholder="Item Name" name="itemName" onChange={this.handleInputChange} />
+              <Form.Control
+                type="text"
+                placeholder="Item Name"
+                name="itemName"
+                onChange={this.handleInputChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="Merchant Name" name="merchant" onChange={this.handleInputChange} />
+              <Form.Control
+                type="text"
+                placeholder="Merchant Name"
+                name="merchant"
+                onChange={this.handleInputChange}
+              />
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="Price" name="price" onChange={this.handleInputChange} />
+              <Form.Control
+                type="text"
+                placeholder="Price"
+                name="price"
+                onChange={this.handleInputChange}
+              />
             </Col>
           </Form.Row>
           <Form.Group controlId="formGridLink">
             <Form.Label></Form.Label>
-            <Form.Control placeholder="Product Link" name="link" onChange={this.handleInputChange} />
+            <Form.Control
+              placeholder="Product Link"
+              name="link"
+              onChange={this.handleInputChange}
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit" size="lg" block>
             Submit
-         </Button>
+          </Button>
         </Form>
       </div>
-    )
+    );
   }
 }
 

@@ -1,18 +1,28 @@
-
-  .container-fluid  {
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-  }
-
-.signin {
-    flex: 2;
-    width: 350px;
-    height: 50px;
-    margin: auto;
-    padding: 0.5em;
+.container-fluid {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
 }
 
+.signin {
+  flex: 2;
+  width: 350px;
+  height: 50px;
+  margin: auto;
+  padding: 0.2em;
+}
+
+.fa-sign-out-alt {
+  color: crimson;
+  font-size: x-large;
+}
+.error {
+  color: red;
+  font-size: small;
+}
+.has-error {
+  border-color: red;
+}
 
 .item {
   padding: 2em;
@@ -22,19 +32,19 @@
   margin: auto;
 }
 
-  .btnedit{
-    color: green;
-    cursor: pointer
-  }
+.btnedit {
+  color: green;
+  cursor: pointer;
+}
 
-  .btndelete{
-    color: brown;
-    cursor: pointer
-  }
+.btndelete {
+  color: brown;
+  cursor: pointer;
+}
 
-  .button {
-    margin: 6px;
-  }
+.button {
+  margin: 6px;
+}
 
 #background {
   color: black;
