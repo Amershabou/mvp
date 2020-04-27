@@ -77,11 +77,9 @@ class Signup extends React.Component {
     e.preventDefault();
 
     if (this.validateInput() > 0) {
-      console.log(this.validateInput());
       return;
     }
     axios.post(`/signup`, this.state).then((data) => {
-      console.log(data);
       this.setState({
         submitted: true,
       });

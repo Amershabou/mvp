@@ -33,11 +33,16 @@ class App extends React.Component {
     this.getAllItems();
   }
   getAllItems() {
-    let id = localStorage.getItem("id");
+    let userId = localStorage.getItem("id");
+    let token = localStorage.getItem("jwtToken");
+
     axios
-      .get(`/api/items/${id}`)
+      .get(`/api/items/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
-        console.log(res.data);
         this.setState({
           items: res.data,
           edit: false,
@@ -48,9 +53,15 @@ class App extends React.Component {
   }
 
   deleteAll() {
-    let id = localStorage.getItem("id");
+    let userId = localStorage.getItem("id");
+    let token = localStorage.getItem("jwtToken");
+
     axios
-      .delete(`/api/delete/${id}`)
+      .delete(`/api/items/delete/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => console.log(res.data))
       .catch((err) => console.log(err));
     this.setState({ items: [], deletedAll: true });
@@ -62,8 +73,13 @@ class App extends React.Component {
   }
 
   deleteOne(id) {
+    let token = localStorage.getItem("jwtToken");
     axios
-      .delete(`/api/delete/${id}`)
+      .delete(`/api/item/delete/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => this.getAllItems())
       .catch((err) => console.log(err));
     this.setState({
@@ -127,7 +143,6 @@ class App extends React.Component {
 
   render() {
     let name = localStorage.getItem("name");
-    console.log(name);
     return (
       <div className="container-fluid text-center">
         {this.state.deletedOne

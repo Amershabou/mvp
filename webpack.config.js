@@ -24,8 +24,4 @@ module.exports = {
       },
     ],
   },
-  note: {
-    net: "empty",
-    dns: "empty",
-  },
 };

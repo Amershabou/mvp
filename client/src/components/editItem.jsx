@@ -29,9 +29,15 @@ class ItemForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let token = localStorage.getItem("jwtToken");
     this.props.editAlert(this.state);
+    const { _id } = this.state;
     axios
-      .post("/api/update", this.state)
+      .put(`/api/item/update/${_id}`, this.state, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         props.getNewItem();
       })
