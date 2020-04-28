@@ -18,7 +18,6 @@ class Login extends React.Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUserSignin = this.handleUserSignin.bind(this);
   }
 
   handleInputChange(event) {
@@ -48,6 +47,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { errors } = this.state;
     return (
       <div>
         <div className="container-fluid text-center">

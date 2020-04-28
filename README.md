@@ -1,26 +1,29 @@
 # Save-For-Later
+
 > Web Application that helps people keep track of items they want to buy in the future. Delivered as a `Minimum Viable Product (MVP)`.
 
 ## Photos
 
+### Signup
+
+![](demo/Save-For-Later-Signup-1.gif)
+![](demo/Save-For-Later-Signup-2.gif)
+
 ### Login
+
 ![](demo/Save-For-Later-Login.gif)
 
-
 ### Add
+
 ![](demo/Save-For-Later-Add.gif)
 
-
 ### Edit
+
 ![](demo/Save-For-Later-Edit.gif)
 
-
 ### Delete one And Delete All
-![](demo/Save-For-Later-Delete.gif)
 
-![](demo/Save-For-Later-DeleteAll.gif)
-
-
+![](Save-For-Later-DeleteOne-DeleteAll.gif)
 
 ## Table of Contents
 
@@ -42,6 +45,7 @@
 ## Usage
 
 ### Run Project Locally
+
 Assumes local installation of [Node.js](https://nodejs.org/en/download/)
 
 To run the project locally:
@@ -50,8 +54,6 @@ To run the project locally:
 - Run `npm install`
 - Run `npm run react-dev` (If you made chenges to any of the files)
 - Run `npm run start`
-
-
 
 ## Requirements
 
@@ -70,4 +72,3 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
-
