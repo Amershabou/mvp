@@ -52,7 +52,7 @@ To run the project locally:
 
 - Clone or fork this repository.
 - Run `npm install`
-- Run `npm run react-dev` (If you made chenges to any of the files)
+- Run `npm run build` (If you made chenges to any of the files)
 - Run `npm run start`
 
 ## Requirements
